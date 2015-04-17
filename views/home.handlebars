@@ -1,0 +1,40 @@
+<div class="background-full-purple">
+	<div class="inner-width" ng-controller="search">
+		<h1>Recommend something new, dare yourself to explore.</h1>
+		<form action="q" method="GET">
+			<div class="fake_input">
+					<label>I like</label><input required="true" name="like" ng-model="search.like" type="text" autocomplete="off">
+				</div><div class="fake_input third_padding">
+					<label>And</label><input name="and" ng-model="search.and" type="text" autocomplete="off">
+			</div><input required="true" type="submit" ng-click="query()" value="Recommend Something!">
+		</form>
+	</div>
+</div>
+<div class="background-full-white">
+	<div class="inner-width">
+		<h2>How it works</h2>
+		<p>
+			RecommenDare will <b>recommend and dare you to explore</b>, to try new things. 
+			Enter two things that you like, and we will find everything that is often grouped with those things. We graph everything and try to get the most accurate results. Try it out!</p>
+	</div>
+</div>
+<div class="background-full-gray">
+	<div class="inner-width">
+		<h2>Get Involved</h2>
+		<p>All of our suggestions and recommendations come from real people. People like you! Want to get involved and help people discover awesome things? <a href="mailto:avonwodahs@gmail.com">Send me an email.</a></p>
+	</div>
+</div>
+<div class="background-full-white">
+	<div class="inner-width" ng-controller="recent">
+		<h2>Recent Recommendations <div class="recommendation_filter">Search: <input ng-model="query"></div></h2>
+		<div class="recent-recommendations" >
+			<div x-id="{[{recommendation._id}]}" class="ajax-card" ng-repeat="recommendation in recommendations | filter:query | limitTo:10" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+				<b>{[{recommendation.name}]}</b>
+				<div class="rating">
+					<span x-rating="5">☆</span><span x-rating="4">☆</span><span x-rating="3">☆</span><span x-rating="2">☆</span><span x-rating="1">☆</span>
+				</div>
+				<div class="category">{[{recommendation.category}]}</div><div class="similar"></div>
+			</div>
+		</div>
+	</div>
+</div>

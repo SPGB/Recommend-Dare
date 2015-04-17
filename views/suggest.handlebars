@@ -1,0 +1,56 @@
+<div class="background-full-purple">
+	<div class="inner-width">
+		<h1><a href="/">RecommenDare</a> - Results</h1>
+		<form action="/q" method="GET">
+			<div class="fake_input">
+					<label>I like</label><input name="like" type="text" value="{{like}}">
+				</div><div class="fake_input third_padding">
+					<label>And</label><input name="and" type="text" value="{{and}}">
+			</div><input type="submit" value="Recommend Something!">
+		</form>
+	</div>
+</div>
+<div class="background-full-auto">
+	<div class="inner-width">
+		{{#each suggestions}}
+			<div class="ajax-card" x-id="{{this}}"><img src="/spin.gif" class="spinner" /></div>
+		{{else}}
+			<h2>Almost there! How would you categorize these two things?</h2>
+			<form action="categorize" method="POST">
+				<input type="hidden" name="like" value="{{like}}">
+				<input type="hidden" name="and" value="{{and}}">
+				<label for="like_category">{{like}}</label>
+				<select class="category_select" id="like_category" name="like_category">
+					<option value="">Select a Category</option>
+					<option value="movie">Movie</option>
+					<option value="Show">Show</option>
+					<option value="Book">Book</option>
+					<option value="Music">Music</option>
+					<option value="food">Food</option>
+					<option value="Comic">Comic</option>
+					<option value="Person">Person</option>
+					<option value="video game">Video Game</option>
+					<option value="Website">Website</option>
+					<option value="software">Software</option>
+				</select> &nbsp; 
+				<label for="and_category">{{and}}</label>
+				<select class="category_select" id="and_category" name="and_category">
+					<option value="">Select a Category</option>
+					<option value="movie">Movie</option>
+					<option value="Show">Show</option>
+					<option value="Book">Book</option>
+					<option value="Music">Music</option>
+					<option value="food">Food</option>
+					<option value="Comic">Comic</option>
+					<option value="Person">Person</option>
+					<option value="video game">Video Game</option>
+					<option value="Website">Website</option>
+					<option value="software">Software</option>
+				</select>  &nbsp; 
+				<input type="submit" value="Show me the results!">
+			</form>
+			<style> .load_more { display: none; } </style>
+		{{/each}}
+	</div>
+</div>
+<div class="load_more button">Load More</div>
