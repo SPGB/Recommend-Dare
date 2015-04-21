@@ -166,6 +166,9 @@ module.exports = (function() {
 	   	})
 	});
 
+	/*
+	* find_thing accepts a name and callback and injects a Thing object into the callback
+	*/
 	function find_thing(n, callback) {
 		Thing.findOne({ name: n.toLowerCase()}, function (err, thing) {
 			if (err) return callback(err, null);
@@ -182,6 +185,12 @@ module.exports = (function() {
 		});
 	}
 
+	/*
+	* reccommend accepts two Things and a callback
+	* We look at all of the links that those two Things have and:
+	* 1) Create a new link between those two things
+	* 2) return a list of all things that are linked to those two things not including themselves
+	*/
 	function recommend(thingone, thingtwo, callback) {
 		if (!thingone || !thingtwo) return callback('missing things', []);
 		Link.find({ $or: [{from: thingone._id}, {from: thingtwo._id}] }, function (err, links_one) {
